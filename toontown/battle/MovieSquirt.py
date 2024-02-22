@@ -501,6 +501,7 @@ def __doSeltzerBottle(squirt, delay, fShowStun):
 
 
 def __doFireHose(squirt, delay, fShowStun):
+    squirtSuits = squirt['squirtSuits']
     toon = squirt['toon']
     level = squirt['level']
     hpbonus = squirt['hpbonus']
@@ -579,7 +580,8 @@ def __doFireHose(squirt, delay, fShowStun):
     if hp > 0:
         tracks.append(__getSplashTrack(targetPoint, 0.4, 2.7, battle, splashHold=1.5))
     if hp > 0 or delay <= 0:
-        tracks.append(__getSuitTrack(suit, tContact, tSuitDodges, hp, hpbonus, kbbonus, 'squirt-large-react', died, leftSuits, rightSuits, battle, toon, fShowStun, revived=revived))
+        for su in squirtSuits:
+            tracks.append(__getSuitTrack(su, tContact, tSuitDodges, hp, hpbonus, kbbonus, 'squirt-large-react', died, leftSuits, rightSuits, battle, toon, fShowStun, revived=revived))
     return tracks
 
 

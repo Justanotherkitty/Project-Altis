@@ -568,9 +568,11 @@ class BattleCalculatorAI:
                     organicBonus = toon.checkGagBonus(attackTrack, attackLevel)
                     propBonus = self.__checkPropBonus(attackTrack)
                     bonus = organicBonus or propBonus
-                    if targetId not in self.currentlyWetSuits:
-                        rounds = NumRoundsWet[attackLevel]
-                        self.__addWetSuitInfo(targetId, -1, rounds, bonus)
+                    # if targetId not in self.currentlyWetSuits:
+                    rounds = NumRoundsWet[attackLevel]
+                    self.__addWetSuitInfo(targetId, -1, rounds, bonus)
+                    self.__addWetSuitInfo(targetId-1, -1, rounds, bonus)
+                    self.__addWetSuitInfo(targetId+1, -1, rounds, bonus)
                     attackDamage = getAvPropDamage(attackTrack, attackLevel, toon.experience.getExp(attackTrack), organicBonus, propBonus, self.propAndOrganicBonusStack)
                 elif atkTrack == ZAP:
                     organicBonus = toon.checkGagBonus(attackTrack, attackLevel)

@@ -741,6 +741,25 @@ class Movie(DirectObject.DirectObject):
                                 if self.battle.isSuitLured(asuit) == 0:
                                     rightSuits.append(asuit)
 
+                        squirtSuits = []
+                        if track == SQUIRT:
+                            if suitIndex > 0 and lenSuits > suitIndex + 1:
+                                for si in xrange(suitIndex - 1, suitIndex + 1):
+                                    asuit = self.battle.activeSuits[si]
+                                    squirtSuits.append(asuit)
+                            elif suitIndex == 0 and lenSuits > suitIndex + 1:
+                                for si in xrange(0, suitIndex):
+                                    asuit = self.battle.activeSuits[si]
+                                    squirtSuits.append(asuit)
+                            elif suitIndex > 0 and lenSuits == suitIndex + 1:
+                                for si in xrange(suitIndex - 1, suitIndex):
+                                    asuit = self.battle.activeSuits[si]
+                                    squirtSuits.append(asuit)
+                            else:
+                                asuit = self.battle.activeSuits[suitIndex]
+                                squirtSuits.append(asuit)
+
+                        adict['squirtSuits'] = squirtSuits
                         sdict['leftSuits'] = leftSuits
                         sdict['rightSuits'] = rightSuits
                         sdict['hp'] = hps[targetIndex]
